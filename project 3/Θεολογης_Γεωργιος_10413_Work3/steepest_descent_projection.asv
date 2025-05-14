@@ -1,0 +1,31 @@
+function [xk,k,xs,status]=steepest_descent_projection(fun,x0,gk,sk)
+syms x1 x2;
+grad_fun(x1,x2)=jacobian(fun(x1,x2),[x1,x2]);
+e=0.01;
+xk=x0;
+k=1;
+xs={x0};
+gd=grad_fun(xk(1),xk(2));
+while(norm(gd)>=e)
+    xkbar=double(xk-sk*gd);
+    xkbar=Projection(xkbar);
+    xk=double(xk+gk*(xkbar-xk));
+    xs={xs{1:end},xk};
+    k=k+1;
+    % if(k>100)
+    %     break;
+    % end    
+    %Thema 3
+    if(norm(gd)<=2) 
+        sk=1/7;
+    end 
+    ιφ
+    gd=grad_fun(xk(1),xk(2));
+end
+if(norm(xk)<0.2)
+    status='Success';
+else
+    status='Fail';
+end  
+
+end

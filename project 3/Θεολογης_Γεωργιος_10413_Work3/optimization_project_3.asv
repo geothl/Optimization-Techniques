@@ -1,0 +1,29 @@
+clear;
+syms x1 x2
+f(x1,x2)=1/3*x1^2+3*x2^2;
+ grad_fun(x1,x2)=jacobian(f(x1,x2),[x1,x2]);
+% [z,iterations,xs,status]=steepest_descent(f,[5 -5],@gk_calculator_constant,0.1);
+% plot_opt_3(xs,'Steepest Descent: (6,8) for constant gk=0.1',iterations,'1_1',status);
+% 
+% [z,iterations,xs,status]=steepest_descent(f,[6 8],@gk_calculator_constant,0.3);
+% plot_opt_3(xs,'Steepest Descent: (6,8) for constant gk=0.3',iterations,'1_2',status);
+% 
+% [z,iterations,xs,status]=steepest_descent(f,[6 8],@gk_calculator_constant,3);
+% plot_opt_3(xs,'Steepest Descent: (6,8) for constant gk=3',iterations,'1_3',status);
+% 
+% [z,iterations,xs,status]=steepest_descent(f,[6 8],@gk_calculator_constant,5);
+% plot_opt_3(xs,'Steepest Descent: (6,8) for constant gk=5',iterations,'1_4',status);
+
+% [z,iterations,xs,status]=steepest_descent_projection(f,[5 -5],0.5,5);
+% plot_opt_3_b(xs,'Steepest Descent Projection: (5,-5) for constant gk=0.5 sk=5',iterations,'2_1',status);
+% 
+% [z,iterations,xs,status]=steepest_descent_projection(f,[-5 10],0.1,15);
+% plot_opt_3_b(xs,'Steepest Descent Projection: (-5,10) for constant gk=0.1 sk=15',iterations,'2_3',status);
+
+ [z,iterations,xs,status]=steepest_descent_projection(f,[8 -10],0.2,0.1);
+plot_opt_3_b(xs,'Steepest Descent Projection: (8,-10) for constant gk=0.2 sk=0.1',iterations,'sd_0_0_const',status);
+
+xpr=Projection([8 -10]);
+ [z,iterations,xs,status]=steepest_descent_projection(f,xpr,0.2,0.1);
+plot_opt_3_b(xs,'Steepest Descent Projection: (8,-10) for constant gk=0.2 sk=0.1',iterations,'sd_0_0_const',status);
+

@@ -1,0 +1,28 @@
+function  plot_opt_3(xs,x0,iterations,filename,status)
+syms x1 x2
+f(x1,x2)=1/3*x1^2+3*x2^3;
+for i=1:length(xs)
+    x1val(i)=double(xs{i}(1)); 
+    x2val(i)=double(xs{i}(2));    
+end
+
+x1 = linspace(-20,20,1000);
+y1 = linspace(-20,20,1000);
+[X1,X2] = meshgrid(x1,y1);
+Z = 1/3*X1.^2+3*X2.^2;
+figure; 
+contour(X1,X2,Z,5)
+hold on
+plot(x1val,x2val,'r-*'); 
+str=num2str(iterations);
+txt = append('Iterations needed:',str);
+title({x0,txt,status});
+xlabel('x1','FontSize',12,'FontWeight','bold') 
+ylabel('x2','FontSize',12,'FontWeight','bold',"Rotation",0);
+hold on
+plot(0,0,'ko');
+% saveas(gcf, fullfile('C:\Users\george theologis\Desktop\ΠΑΝΕΠΙΣΤΗΜΙΟ\7ο ΕΞΑΜΗΝΟ\Τεχνικές Βελτιστοποιήσης\project 2\figures', filename), 'epsc');
+% saveas(gcf, fullfile('C:\Users\george theologis\Desktop\ΠΑΝΕΠΙΣΤΗΜΙΟ\7ο ΕΞΑΜΗΝΟ\Τεχνικές Βελτιστοποιήσης\project 2\figures\png', filename), 'png');
+
+
+end
